@@ -1,8 +1,8 @@
-package com.aca.carfabric.engine.wheel;
+package com.aca.carfabric.engine.exterior;
 
 import com.aca.carfabric.engine.HasPrice;
 
-public abstract class Wheel implements HasPrice {
+public class Exterior implements HasPrice {
     protected Double price = 0d;
 
     @Override

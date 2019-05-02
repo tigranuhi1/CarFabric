@@ -2,12 +2,14 @@ package com.aca.carfabric;
 
 import com.aca.carfabric.engine.car.*;
 import com.aca.carfabric.engine.carengine.*;
-import com.aca.carfabric.engine.models.CarType;
-import com.aca.carfabric.engine.models.EngineType;
-import com.aca.carfabric.engine.models.WheelType;
+import com.aca.carfabric.engine.exterior.*;
+import com.aca.carfabric.engine.interior.ClothInterior;
+import com.aca.carfabric.engine.interior.Interior;
+import com.aca.carfabric.engine.interior.LeatherInterior;
+import com.aca.carfabric.engine.models.*;
 import com.aca.carfabric.engine.wheel.AllDriveWheel;
 import com.aca.carfabric.engine.wheel.BackDriveWheel;
-import com.aca.carfabric.engine.wheel.FronDriveWheel;
+import com.aca.carfabric.engine.wheel.FrontDriveWheel;
 import com.aca.carfabric.engine.wheel.Wheel;
 import com.aca.carfabric.ui.GUI;
 import com.aca.carfabric.ui.TerminalUI;
@@ -15,9 +17,9 @@ import com.aca.carfabric.ui.UI;
 import com.aca.carfabric.ui.models.UIType;
 
 public class CarFabric {
-    UI ui;
+    private UI ui;
 
-    CarFabric(UIType uiType) {
+    public CarFabric(UIType uiType) {
         switch (uiType) {
             case TERMINAL:
                 ui = new TerminalUI();
@@ -30,7 +32,7 @@ public class CarFabric {
         }
     }
 
-    Car produceCar() {
+    public Vehicle produceVehicle() {
         ui.askForCarType();
         CarType carType = ui.getCarType();
 
@@ -40,29 +42,72 @@ public class CarFabric {
         ui.askForWheelType();
         Wheel wheel = produceWheel(ui.getWheelType());
 
+        ui.askForInteriorType();
+        Interior interior = produceInterior(ui.getInteriorType());
+
+        Exterior exterior = null;
+        if(!carType.equals(CarType.MOTORCYCLE)) {
+            ui.askForExteriorType();
+            exterior = produceExterior(ui.getExteriorType());
+        }
+
         switch (carType) {
-            case CROSSOVER:
-                return new Crossover(engine, wheel);
-            case SEDAN_SPORTCAR:
-                return new SedanSport(engine, wheel);
-            case SEDAN_BUISNESS:
-                return new SedanBusiness(engine, wheel);
-            case SEDAN_ELECTRICAL:
-                return new SedanElectrical(engine, wheel);
-            case HATCHBACK:
-                return new Hatchback(engine, wheel);
+            case CROSSOVER_SPORT:
+                return new CrossoverSport(engine, wheel, interior, exterior);
+            case CROSSOVER_BUSINESS:
+                return new CrossoverBusiness(engine, wheel, interior, exterior);
+            case CROSSOVER_ECONOM:
+                return new CrossoverEconom(engine, wheel, interior, exterior);
+            case SEDAN_SPORT:
+                return new SedanSport(engine, wheel, interior, exterior);
+            case SEDAN_BUSINESS:
+                return new SedanBusiness(engine, wheel, interior, exterior);
+            case SEDAN_ECONOM:
+                return new SedanEconom(engine, wheel, interior, exterior);
+            case HATCHBACK_SPORT:
+                return new HatchbackSport(engine, wheel, interior, exterior);
+            case HATCHBACK_BUSINESS:
+                return new HatchbackBusiness(engine, wheel, interior, exterior);
+            case HATCHBACK_ECONOM:
+                return new HatchbackEconom(engine, wheel, interior, exterior);
             case TRUCK:
-                return new Truck(engine, wheel);
+                return new Truck(engine, wheel, interior, exterior);
             case TRACTOR:
-                return new Tractor(engine, wheel);
+                return new Tractor(engine, wheel, interior, exterior);
             case MOTORCYCLE:
-                return new Motorcycle(engine, wheel);
+                return new Motorcycle(engine, wheel, interior);
             default:
                 throw new IllegalArgumentException("Incorrect car type.");
         }
     }
 
-    Engine produceEngine(EngineType engineType) {
+    private Exterior produceExterior(ExteriorType exteriorType) {
+        switch (exteriorType) {
+            case TWO_DOORS:
+                return new TwoDoorsExterior();
+            case THREE_DOORS:
+                return new ThreeDoorExterior();
+            case FOUR_DOORS:
+                return new FourDoorExterior();
+            case FIVE_DOORS:
+                return new FiveDoorExterior();
+            default:
+                throw new IllegalArgumentException("Incorrect exterior type.");
+        }
+    }
+
+    private Interior produceInterior(InteriorType interiorType) {
+        switch (interiorType) {
+            case LEATHER_SALON:
+                return new LeatherInterior();
+            case CLOTH_SALON:
+                return new ClothInterior();
+            default:
+                throw new IllegalArgumentException("Incorrect interior type");
+        }
+    }
+
+    private Engine produceEngine(EngineType engineType) {
         switch (engineType) {
             case ELECTRICAL:
                 return new ElectricalEngine();
@@ -77,12 +122,12 @@ public class CarFabric {
         }
     }
 
-    Wheel produceWheel(WheelType wheelType) {
+    private Wheel produceWheel(WheelType wheelType) {
         switch (wheelType) {
             case ALL_WHEEELS_DRIVE:
                 return new AllDriveWheel();
             case FRONT_WHEELS_DRIVE:
-                return new FronDriveWheel();
+                return new FrontDriveWheel();
             case BACK_WHEELS_DRIVE:
                 return new BackDriveWheel();
             default:

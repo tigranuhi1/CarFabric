@@ -15,10 +15,10 @@ public class WheelTest {
     }
 
     void frontDriveWheelPriceTest() {
-        assert PriceCalculator.getPrice(new FronDriveWheel()).equals(4000d);
+        assert PriceCalculator.getPrice(new FrontDriveWheel()).equals(3000d);
     }
 
     void backDriveWheelPriceTest() {
-        assert PriceCalculator.getPrice(new BackDriveWheel()).equals(3000d);
+        assert PriceCalculator.getPrice(new BackDriveWheel()).equals(4000d);
     }
 }

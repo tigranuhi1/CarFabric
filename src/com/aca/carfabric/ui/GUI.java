@@ -1,16 +1,8 @@
 package com.aca.carfabric.ui;
 
-import com.aca.carfabric.engine.models.CarType;
-import com.aca.carfabric.engine.models.EngineType;
-import com.aca.carfabric.engine.models.WheelType;
+import com.aca.carfabric.engine.models.*;
 
 public class GUI extends UI {
-//    @Override
-//    void print(String message) {
-//        //TODO
-//        throw new UnsupportedOperationException();
-//    }
-
     @Override
     public void askForCarType() {
         //TODO
@@ -30,6 +22,18 @@ public class GUI extends UI {
     }
 
     @Override
+    public void askForInteriorType() {
+        //TODO
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void askForExteriorType() {
+        //TODO
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public CarType getCarType() {
         //TODO
         throw new UnsupportedOperationException();
@@ -43,6 +47,18 @@ public class GUI extends UI {
 
     @Override
     public WheelType getWheelType() {
+        //TODO
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public InteriorType getInteriorType() {
+        //TODO
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public ExteriorType getExteriorType() {
         //TODO
         throw new UnsupportedOperationException();
     }

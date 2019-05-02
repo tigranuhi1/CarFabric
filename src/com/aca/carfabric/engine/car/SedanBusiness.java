@@ -1,18 +1,16 @@
 package com.aca.carfabric.engine.car;
 
 import com.aca.carfabric.engine.carengine.Engine;
+import com.aca.carfabric.engine.exterior.Exterior;
+import com.aca.carfabric.engine.interior.Interior;
 import com.aca.carfabric.engine.wheel.Wheel;
 
 public class SedanBusiness extends Car {
-    private final Double price = 27000d;
-
-    public SedanBusiness(Engine engine, Wheel wheel) {
+    public SedanBusiness(Engine engine, Wheel wheel, Interior interior, Exterior exterior) {
+        price = 32000d;
         this.engine = engine;
         this.wheel = wheel;
-    }
-
-    @Override
-    public Double getPrice(){
-        return this.price + engine.getPrice() + wheel.getPrice();
+        this.interior = interior;
+        this.exterior = exterior;
     }
 }

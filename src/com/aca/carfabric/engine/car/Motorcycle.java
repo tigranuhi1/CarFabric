@@ -1,18 +1,20 @@
 package com.aca.carfabric.engine.car;
 
 import com.aca.carfabric.engine.carengine.Engine;
+import com.aca.carfabric.engine.exterior.Exterior;
+import com.aca.carfabric.engine.interior.Interior;
 import com.aca.carfabric.engine.wheel.Wheel;
 
-public class Motorcycle extends Car {
-    private final Double price = 10000d;
-
-    public Motorcycle(Engine engine, Wheel wheel) {
+public class Motorcycle extends Vehicle {
+    public Motorcycle(Engine engine, Wheel wheel, Interior interior) {
+        price = 10000d;
         this.engine = engine;
         this.wheel = wheel;
+        this.interior = interior;
     }
 
     @Override
     public Double getPrice(){
-        return this.price + engine.getPrice() + wheel.getPrice();
+        return price + engine.getPrice() + wheel.getPrice() + interior.getPrice();
     }
 }

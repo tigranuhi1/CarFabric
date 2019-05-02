@@ -15,12 +15,12 @@ public class EngineTest {
         assert PriceCalculator.getPrice(new DieselEngine()).equals(2000d);
     }
     void petrolEnginePriceTest(){
-        assert PriceCalculator.getPrice(new DieselEngine()).equals(5000d);
+        assert PriceCalculator.getPrice(new PetrolEngine()).equals(5000d);
     }
     void hybridEnginePriceTest(){
-        assert PriceCalculator.getPrice(new DieselEngine()).equals(4000d);
+        assert PriceCalculator.getPrice(new HybridEngine()).equals(4000d);
     }
     void electricalEnginePriceTest(){
-        assert PriceCalculator.getPrice(new DieselEngine()).equals(10000d);
+        assert PriceCalculator.getPrice(new ElectricalEngine()).equals(10000d);
     }
 }

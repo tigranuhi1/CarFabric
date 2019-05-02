@@ -5,12 +5,13 @@ import com.aca.carfabric.engine.exterior.Exterior;
 import com.aca.carfabric.engine.interior.Interior;
 import com.aca.carfabric.engine.wheel.Wheel;
 
-public class Tractor extends Vehicle {
-    public Tractor(Engine engine, Wheel wheel, Interior interior, Exterior exterior) {
-        price = 26000d;
+public class CrossoverBusiness extends Car{
+    public CrossoverBusiness(Engine engine, Wheel wheel, Interior interior, Exterior exterior) {
+        price = 35000d;
         this.engine = engine;
         this.wheel = wheel;
         this.interior = interior;
         this.exterior = exterior;
     }
 }
+

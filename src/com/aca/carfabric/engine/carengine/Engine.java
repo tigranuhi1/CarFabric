@@ -3,7 +3,10 @@ package com.aca.carfabric.engine.carengine;
 import com.aca.carfabric.engine.HasPrice;
 
 public abstract class Engine implements HasPrice {
-    //private Double price;
+    protected Double price = 0d;
 
-    public abstract Double getPrice();
+    @Override
+    public Double getPrice() {
+        return price;
+    }
 }
